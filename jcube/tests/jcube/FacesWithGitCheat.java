@@ -27,6 +27,16 @@ public class FacesWithGitCheat {
 	public void firstFaceTitleShouldBeCreateAndClone() {
 		assertEquals("Create & clone", this.faces.at(0).title());
 	}
+	
+	@Test
+	public void firstFaceFirstCheatTitleShouldBeGitInit() {
+		assertEquals("git init", this.faces.at(0).cheatAt(0).title());
+	}
+	
+	@Test 
+	public void firstFaceSecondCheatTitleShouldBeGitClonPathToRepo() {
+		assertEquals("git clone /path/to/repo", this.faces.at(0).cheatAt(1).title());
+	}
 
 	@Test
 	public void secondFaceTitleShouldBeAddAndRemove() {

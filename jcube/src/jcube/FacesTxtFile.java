@@ -27,6 +27,10 @@ public class FacesTxtFile {
 		if (line.startsWith("* ")) {
 			faces.newFace(line.substring(2));
 		}
+		
+		if (line.startsWith("** ")) {
+			faces.at(0).newCheat(line.substring(3));
+		}
 	}
 
 }

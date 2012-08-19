@@ -2,12 +2,14 @@ package jcube;
 
 public class Face {
 
-	public Face(String string) {
-		// TODO Auto-generated constructor stub
+	private String title;
+
+	public Face(String title) {
+		this.title = title;
 	}
 
 	public String title() {
-		return "Create & clone"; 
+		return title; 
 	}
 
 }

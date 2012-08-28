@@ -23,4 +23,8 @@ public class Face {
 		this.cheats .add(new Cheat(title));
 	}
 
+	public Cheat lastCheat() {
+		return this.cheats.get(this.cheats.size() - 1);
+	}
+
 }

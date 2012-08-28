@@ -33,9 +33,19 @@ public class FacesWithGitCheat {
 		assertEquals("git init", this.faces.at(0).cheatAt(0).title());
 	}
 	
+	@Test
+	public void firstFaceFirstCheatShouldBeCreateNewRepository() {
+		assertEquals("create new repository", this.faces.at(0).cheatAt(0).content());
+	}
+	
 	@Test 
 	public void firstFaceSecondCheatTitleShouldBeGitClonPathToRepo() {
 		assertEquals("git clone /path/to/repo", this.faces.at(0).cheatAt(1).title());
+	}
+	
+	@Test
+	public void firstFaceSecondCheatShouldBeCloneLocalRepository() {
+		assertEquals("clone local repository", this.faces.at(0).cheatAt(1).content());
 	}
 
 	@Test

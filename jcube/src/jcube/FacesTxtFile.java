@@ -31,6 +31,10 @@ public class FacesTxtFile {
 		if (line.startsWith("** ")) {
 			faces.at(0).newCheat(line.substring(3));
 		}
+		
+		if (line.startsWith("*** ")) {
+			faces.at(0).lastCheat().content(line.substring(4));
+		}
 	}
 
 }

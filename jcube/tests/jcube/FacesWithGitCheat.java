@@ -52,4 +52,14 @@ public class FacesWithGitCheat {
 	public void secondFaceTitleShouldBeAddAndRemove() {
 		assertEquals("Add & remove", this.faces.at(1).title());
 	}
+	
+	@Test 
+	public void firstFaceSecondCheatTitleShouldBeGitAddStar() {
+		assertEquals("git add *", this.faces.at(1).cheatAt(1).title());
+	}
+	
+	@Test 
+	public void firstFaceSecondCheatContentShouldBeGitAddAllChangesToIndex() {
+		assertEquals("add all changes to index", this.faces.at(1).cheatAt(1).content());
+	}
 }

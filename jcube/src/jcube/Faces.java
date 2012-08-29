@@ -22,4 +22,8 @@ public class Faces {
 		return this.faces.get(i);
 	}
 
+	public Face last() {
+		return this.faces.get(this.faces.size() - 1);
+	}
+
 }

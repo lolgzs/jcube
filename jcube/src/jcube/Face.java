@@ -15,16 +15,20 @@ public class Face {
 		return title; 
 	}
 
-	public Cheat cheatAt(int i) {
-		return this.cheats.get(i);
-	}
-
 	public void newCheat(String title, String content) {
 		this.cheats.add(new Cheat(title, content));
 	}
 
 	public Cheat lastCheat() {
 		return this.cheats.get(this.cheats.size() - 1);
+	}
+
+	public boolean contains(Cheat cheat) {
+		return this.cheats.contains(cheat);
+	}
+
+	public int indexOf(Cheat cheat) {
+		return this.cheats.indexOf(cheat);
 	}
 
 }

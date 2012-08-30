@@ -28,18 +28,19 @@ public class FacesWithGitCheat {
 		assertEquals("Create & clone", this.faces.at(0).title());
 	}
 	
-	
 	@Test
-	public void firstFaceFirstCheatShouldBeCreateNewRepository() {
-		assertEquals(	new Cheat("git init", "create new repository"),
-		 			 	this.faces.at(0).cheatAt(0));
+	public void firstFaceShouldContainsCheatGitInit() {
+		assertTrue(this.faces.at(0).contains(new Cheat("git init", "create new repository")));
 	}
 	
-
 	@Test
-	public void firstFaceSecondCheatShouldBeCloneLocalRepository() {
-		assertEquals(	new Cheat("git clone /path/to/repo", "clone local repository"),
-				 		this.faces.at(0).cheatAt(1));	
+	public void firstFaceIndexOfCheatGitInitShouldBeZero() {
+		assertEquals(0, this.faces.at(0).indexOf(new Cheat("git init", "create new repository")));
+	}
+	
+	@Test
+	public void firstFaceShouldNotContainsCheatSVNCheckOut() {
+		assertFalse(this.faces.at(0).contains(new Cheat("svn co", "create new repository")));
 	}
 
 	@Test
@@ -48,8 +49,8 @@ public class FacesWithGitCheat {
 	}
 	
 	@Test
-	public void firstFaceSecondCheatContentShouldBeGitAddAllChangesToIndex() {
-		assertEquals(	new Cheat("git add *", "add all changes to index"),
-				 		this.faces.at(1).cheatAt(1));	
+	public void indexOfGitAddStarInSecondFaceShouldBeOne() {
+		assertEquals(1, 
+				     this.faces.at(1).indexOf(new Cheat("git add *", "add all changes to index")));	
 	}
 }

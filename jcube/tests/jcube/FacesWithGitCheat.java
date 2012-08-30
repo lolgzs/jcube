@@ -30,22 +30,22 @@ public class FacesWithGitCheat {
 	
 	@Test
 	public void firstFaceFirstCheatTitleShouldBeGitInit() {
-		assertEquals("git init", this.faces.at(0).cheatAt(0).title());
+		assertEquals("git init", this.faces.at(0).cheatAt(0).getTitle());
 	}
 	
 	@Test
 	public void firstFaceFirstCheatShouldBeCreateNewRepository() {
-		assertEquals("create new repository", this.faces.at(0).cheatAt(0).content());
+		assertEquals("create new repository", this.faces.at(0).cheatAt(0).getContent());
 	}
 	
 	@Test 
 	public void firstFaceSecondCheatTitleShouldBeGitClonPathToRepo() {
-		assertEquals("git clone /path/to/repo", this.faces.at(0).cheatAt(1).title());
+		assertEquals("git clone /path/to/repo", this.faces.at(0).cheatAt(1).getTitle());
 	}
 	
 	@Test
 	public void firstFaceSecondCheatShouldBeCloneLocalRepository() {
-		assertEquals("clone local repository", this.faces.at(0).cheatAt(1).content());
+		assertEquals("clone local repository", this.faces.at(0).cheatAt(1).getContent());
 	}
 
 	@Test
@@ -55,11 +55,11 @@ public class FacesWithGitCheat {
 	
 	@Test 
 	public void firstFaceSecondCheatTitleShouldBeGitAddStar() {
-		assertEquals("git add *", this.faces.at(1).cheatAt(1).title());
+		assertEquals("git add *", this.faces.at(1).cheatAt(1).getTitle());
 	}
 	
 	@Test 
 	public void firstFaceSecondCheatContentShouldBeGitAddAllChangesToIndex() {
-		assertEquals("add all changes to index", this.faces.at(1).cheatAt(1).content());
+		assertEquals("add all changes to index", this.faces.at(1).cheatAt(1).getContent());
 	}
 }

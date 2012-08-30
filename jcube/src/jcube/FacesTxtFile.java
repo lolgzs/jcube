@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class FacesTxtFile {
 	private String filename;
+	private String currentCheatTitle;
 
 	public FacesTxtFile(String filename) {
 		this.filename = filename;
@@ -37,11 +38,11 @@ public class FacesTxtFile {
 		}
 
 		if (line.startsWith("** ")) {
-			faces.last().newCheat(line.substring(3));
+			this.currentCheatTitle = line.substring(3);
 		}
 
 		if (line.startsWith("*** ")) {
-			faces.last().lastCheat().content(line.substring(4));
+			faces.newCheat(this.currentCheatTitle, line.substring(4));
 		}
 	}
 

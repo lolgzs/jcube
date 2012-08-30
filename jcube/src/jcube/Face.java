@@ -19,8 +19,8 @@ public class Face {
 		return this.cheats.get(i);
 	}
 
-	public void newCheat(String title) {
-		this.cheats .add(new Cheat(title));
+	public void newCheat(String title, String content) {
+		this.cheats.add(new Cheat(title, content));
 	}
 
 	public Cheat lastCheat() {

@@ -26,4 +26,8 @@ public class Faces {
 		return this.faces.get(this.faces.size() - 1);
 	}
 
+	public void newCheat(String title, String content) {
+		this.last().newCheat(title, content);		
+	}
+
 }

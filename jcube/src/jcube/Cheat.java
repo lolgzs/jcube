@@ -2,23 +2,19 @@ package jcube;
 
 public class Cheat {
 
-	private String title;
-	private String content;
+	private final String title;
+	private final String content;
 
-	public Cheat(String title) {
+	public Cheat(String title, String content) {
 		this.title = title;
+		this.content = content;
 	}
 
-	public String title() {
+	public String getTitle() {
 		return this.title;
 	}
 
-	public String content() {
+	public String getContent() {
 		return this.content;
 	}
-
-	public void content(String content) {
-		this.content = content;		
-	}
-
 }

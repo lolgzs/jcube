@@ -28,14 +28,11 @@ public class FacesWithGitCheat {
 		assertEquals("Create & clone", this.faces.at(0).title());
 	}
 	
-	@Test
-	public void firstFaceFirstCheatTitleShouldBeGitInit() {
-		assertEquals("git init", this.faces.at(0).cheatAt(0).getTitle());
-	}
 	
 	@Test
 	public void firstFaceFirstCheatShouldBeCreateNewRepository() {
-		assertEquals("create new repository", this.faces.at(0).cheatAt(0).getContent());
+		assertEquals(	new Cheat("git init", "create new repository"),
+		 			 	this.faces.at(0).cheatAt(0));
 	}
 	
 
@@ -50,13 +47,9 @@ public class FacesWithGitCheat {
 		assertEquals("Add & remove", this.faces.at(1).title());
 	}
 	
-	@Test 
-	public void firstFaceSecondCheatTitleShouldBeGitAddStar() {
-		assertEquals("git add *", this.faces.at(1).cheatAt(1).getTitle());
-	}
-	
-	@Test 
+	@Test
 	public void firstFaceSecondCheatContentShouldBeGitAddAllChangesToIndex() {
-		assertEquals("add all changes to index", this.faces.at(1).cheatAt(1).getContent());
+		assertEquals(	new Cheat("git add *", "add all changes to index"),
+				 		this.faces.at(1).cheatAt(1));	
 	}
 }

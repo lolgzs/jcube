@@ -1,7 +1,6 @@
 package jcube;
 
 public class Cheat {
-
 	private final String title;
 	private final String content;
 
@@ -10,13 +9,6 @@ public class Cheat {
 		this.content = content;
 	}
 
-	public String getTitle() {
-		return this.title;
-	}
-
-	public String getContent() {
-		return this.content;
-	}
 	
 	public boolean equals(Object other) {
 		Cheat cheat = (Cheat) other;

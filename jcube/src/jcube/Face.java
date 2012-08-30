@@ -3,7 +3,6 @@ package jcube;
 import java.util.ArrayList;
 
 public class Face {
-
 	private String title;
 	private ArrayList<Cheat> cheats = new ArrayList<Cheat>();
 
@@ -11,16 +10,12 @@ public class Face {
 		this.title = title;
 	}
 
-	public String title() {
+	public String getTitle() {
 		return title; 
 	}
 
 	public void newCheat(String title, String content) {
 		this.cheats.add(new Cheat(title, content));
-	}
-
-	public Cheat lastCheat() {
-		return this.cheats.get(this.cheats.size() - 1);
 	}
 
 	public boolean contains(Cheat cheat) {

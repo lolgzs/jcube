@@ -25,7 +25,7 @@ public class FacesWithGitCheat {
 
 	@Test
 	public void firstFaceTitleShouldBeCreateAndClone() {
-		assertEquals("Create & clone", this.faces.at(0).title());
+		assertEquals("Create & clone", this.faces.at(0).getTitle());
 	}
 	
 	@Test
@@ -45,7 +45,7 @@ public class FacesWithGitCheat {
 
 	@Test
 	public void secondFaceTitleShouldBeAddAndRemove() {
-		assertEquals("Add & remove", this.faces.at(1).title());
+		assertEquals("Add & remove", this.faces.at(1).getTitle());
 	}
 	
 	@Test

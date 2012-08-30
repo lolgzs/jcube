@@ -17,4 +17,10 @@ public class Cheat {
 	public String getContent() {
 		return this.content;
 	}
+	
+	public boolean equals(Object other) {
+		Cheat cheat = (Cheat) other;
+		return this.title.equals(cheat.title) && this.content.equals(cheat.content);
+		
+	}
 }

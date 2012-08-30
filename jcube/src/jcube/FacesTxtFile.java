@@ -18,7 +18,7 @@ public class FacesTxtFile {
 				this.filename)));
 
 		try {
-			populate(faces, input);
+			this.populate(faces, input);
 		} finally {
 			input.close();
 		}

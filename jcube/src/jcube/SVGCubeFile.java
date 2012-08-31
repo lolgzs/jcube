@@ -22,19 +22,16 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class SVGCubeFile {
-	private String xml;
-	
-	public static SVGCubeFile fusion(Faces faces, String xml) {
-		return new SVGCubeFile(faces, xml);
-	}
-	
-	public SVGCubeFile(Faces faces, String xml) {
-		this.xml = xml;
-	}
+	private String xmlFilePath;
 
+	public String fusion(String cheatFilePath, String svgFilePath) throws IOException, XPathExpressionException, SAXException, ParserConfigurationException, TransformerException {
+		Faces faces = Faces.loadFile(cheatFilePath);
+		this.xmlFilePath = svgFilePath;
+		return this.content();
+	}
 
 	public String content() throws SAXException, IOException, ParserConfigurationException, XPathExpressionException, TransformerException {
-		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(this.xml);
+		Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(this.xmlFilePath);
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		XPathExpression expr = xpath.compile("//tspan[contains(text(), \"BLOCK1\")]");
 		NodeList nodes = (NodeList)expr.evaluate(doc, XPathConstants.NODESET);
@@ -50,5 +47,7 @@ public class SVGCubeFile {
 		String output = result.getWriter().toString();
 		return output;
 	}
+
+
 
 }

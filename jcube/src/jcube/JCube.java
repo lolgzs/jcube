@@ -19,7 +19,7 @@ public class JCube {
 	 * @throws XPathExpressionException 
 	 */
 	public static void main(String[] args) throws XPathExpressionException, IOException, SAXException, ParserConfigurationException, TransformerException {
-		System.out.println((new SVGCubeFile()).fusion(args[0], args[1]));
+		System.out.println((new SVGCubeFile(args[0])).fusion(args[1]));
 	}
 
 }

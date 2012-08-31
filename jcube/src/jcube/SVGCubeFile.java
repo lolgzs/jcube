@@ -8,9 +8,15 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class SVGCubeFile {
-	public String fusion(String cheatFilePath, String svgFilePath) throws IOException, XPathExpressionException, SAXException, ParserConfigurationException, TransformerException {
+	private String filePath;
+
+	public SVGCubeFile(String filePath) {
+		this.filePath = filePath;
+	}
+	
+	public String fusion(String cheatFilePath) throws IOException, XPathExpressionException, SAXException, ParserConfigurationException, TransformerException {
 		Faces faces = Faces.loadFile(cheatFilePath);
-		XMLDocument doc = (new XMLDocument()).loadXMLFile(svgFilePath);
+		XMLDocument doc = (new XMLDocument()).loadXMLFile(this.filePath);
 		return this.fusion(faces, doc);
 	}
 

@@ -15,7 +15,7 @@ public class CubeSVGFromFacesWithGitCheat {
 	
 	@Before
 	public void generateSVGFromGitCheat() throws IOException, ParserConfigurationException, SAXException, XPathExpressionException, TransformerException {
-		String svg = (new SVGCubeFile()).fusion("templates/git-cheat.txt", "templates/emacs-cube.svg");
+		String svg = (new SVGCubeFile("templates/emacs-cube.svg")).fusion("templates/git-cheat.txt");
 		this.doc =  (new XMLDocument()).loadXMLString(svg);
 	}
 

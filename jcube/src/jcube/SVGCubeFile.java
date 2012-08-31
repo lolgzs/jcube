@@ -15,8 +15,11 @@ public class SVGCubeFile {
 	}
 
 	public String fusion(Faces faces, XMLDocument doc) throws SAXException, IOException, ParserConfigurationException, XPathExpressionException, TransformerException {
-		NodeList nodes = doc.nodesFromXPath("//tspan[contains(text(), \"BLOCK1\")]");
-		nodes.item(0).setTextContent("Create & clone");
+		NodeList nodes = doc.nodesFromXPath("//tspan[contains(text(), \"BLOCK\")]");
+		
+		for(int i=0; i < faces.size(); i++)
+			nodes.item(i).setTextContent(faces.at(i).getTitle());
+		
 		return doc.asXMLString();
 	}
 }

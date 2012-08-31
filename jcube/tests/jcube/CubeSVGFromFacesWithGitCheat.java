@@ -23,4 +23,9 @@ public class CubeSVGFromFacesWithGitCheat {
 	public void aTagTSpanShouldContainsCreateAndClone() throws XPathExpressionException {
 		assertTrue(this.doc.match("//tspan[contains(text(), \"Create & clone\")]"));
 	}
+	
+	@Test
+	public void aTagTSpanShouldContainsAddAndRemove() throws XPathExpressionException {
+		assertTrue(this.doc.match("//tspan[contains(text(), \"Add & remove\")]"));
+	}
 }

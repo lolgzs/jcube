@@ -1,13 +1,18 @@
 package jcube;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Face {
+public class Face implements Iterable<Cheat> {
 	private String title;
 	private ArrayList<Cheat> cheats = new ArrayList<Cheat>();
 
 	public Face(String title) {
 		this.title = title;
+	}
+	
+	public Iterator<Cheat> iterator() {        
+		return cheats.iterator();
 	}
 
 	public String getTitle() {
@@ -24,6 +29,10 @@ public class Face {
 
 	public int indexOf(Cheat cheat) {
 		return this.cheats.indexOf(cheat);
+	}
+	
+	public int size() {
+		return this.cheats.size();
 	}
 
 }

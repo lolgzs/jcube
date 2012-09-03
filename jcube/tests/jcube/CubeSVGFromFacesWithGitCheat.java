@@ -28,4 +28,19 @@ public class CubeSVGFromFacesWithGitCheat {
 	public void aTagTSpanShouldContainsAddAndRemove() throws XPathExpressionException {
 		assertTrue(this.doc.match("//tspan[contains(text(), \"Add & remove\")]"));
 	}
+	
+	@Test
+	public void aFlowRootShouldContainsGitInitCheat() throws XPathExpressionException {
+		assertTrue(this.doc.match("//flowRoot//flowPara//flowSpan[contains(text(), \"git init\")][following-sibling::flowSpan[contains(text(), \"create new repository\")]]"));
+	}
+	
+	@Test
+	public void aFlowRootShouldContainsGitPushOriginMaster() throws XPathExpressionException {
+		assertTrue(this.doc.match("//flowRoot//flowPara//flowSpan[contains(text(), \"git push origin master\")][following-sibling::flowSpan[contains(text(), \"push changes\")]]"));
+	}
+	
+	@Test
+	public void flowRootShouldNotContainsText() throws XPathExpressionException {
+		assertFalse(this.doc.match("//flowRoot[contains(text(), \"text\")]"));
+	}
 }

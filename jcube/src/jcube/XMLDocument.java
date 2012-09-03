@@ -22,6 +22,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -57,6 +58,10 @@ public class XMLDocument {
 		StringWriter writer = new StringWriter();
 		this.writeDocXMLOn(writer);
 		return writer.toString();
+	}
+	
+	public Element createElement(String name) {
+		return this.doc.createElement(name);
 	}
 
 	public void writeDocXMLOn(StringWriter writer) throws TransformerException,

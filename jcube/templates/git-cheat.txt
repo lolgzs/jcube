@@ -37,5 +37,5 @@
 * Merge
 ** git merge <branch>
 *** merge changes from another branch
-** git diff <source_branch> <target_branch>
+** git diff <source> <target>
 *** view changes between two branches

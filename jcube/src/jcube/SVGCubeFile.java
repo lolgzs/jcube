@@ -2,7 +2,6 @@ package jcube;
 
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Node;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathExpressionException;
 
@@ -24,20 +23,17 @@ public class SVGCubeFile {
 	}
 
 	public String fusion(Faces faces, XMLDocument doc) throws SAXException, IOException, ParserConfigurationException, XPathExpressionException, TransformerException {
-		NodeList nodes = doc.nodesFromXPath("//tspan[contains(text(), \"$BLOCK\")]");
+		for(Integer i=1; i <= faces.size(); i++) {
+			Element blocNode =  (Element)doc.nodesFromXPath("//tspan[contains(text(), \"$BLOCK"+i.toString()+"\")]").item(0);
+			blocNode.setTextContent(faces.at(i-1).getTitle());
 		
-		for(int i=0; i < faces.size(); i++) {
-			nodes.item(i).setTextContent(faces.at(i).getTitle());
-		}
 			
-		nodes = doc.nodesFromXPath("//text[contains(text(), \"$text\")]");
-		for(Integer i=0; i < faces.size(); i++) {	
-			Element templateNode = (Element)nodes.item(i);
+			Element templateNode = (Element) doc.nodesFromXPath("//text[contains(text(), \"$text"+i.toString()+"\")]").item(0);
 			Element faceNode = (Element)templateNode.getParentNode();
 			faceNode.removeChild(templateNode);
 			Float y = Float.parseFloat(templateNode.getAttribute("y"));
 			
-			for(Cheat cheat: faces.at(i)) {
+			for(Cheat cheat: faces.at(i-1)) {
 				Element cheatNode = (Element)templateNode.cloneNode(false);
 				faceNode.appendChild(cheatNode);
 				cheatNode.setAttribute("y", y.toString());

@@ -3,6 +3,8 @@ package jcube;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.xml.xpath.XPathExpressionException;
+
 public class Faces {
 	private ArrayList<Face> faces = new ArrayList<Face>();
 
@@ -29,5 +31,12 @@ public class Faces {
 	public void newCheat(String title, String content) {
 		this.last().newCheat(title, content);		
 	}
+
+	public void acceptVisitor(SVGCubeFile svgCubeFile) throws XPathExpressionException {
+		for(Integer i=1; i <= this.size(); i++) {
+			svgCubeFile.visitFace(this.faces.get(i-1), i);
+		}
+	}
+	
 
 }

@@ -53,6 +53,11 @@ public class XMLDocument {
 		return (this.nodesFromXPath(xpathQuery).getLength() > 0);
 	}
 
+	public Element getFirstNodeFromXPath(String xpath)
+			throws XPathExpressionException {
+		return (Element) this.nodesFromXPath(xpath).item(0);
+	}
+
 	public String asXMLString() throws TransformerFactoryConfigurationError,
 			TransformerException {
 		StringWriter writer = new StringWriter();

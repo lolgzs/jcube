@@ -11,6 +11,8 @@ import org.xml.sax.SAXException;
 
 public class SVGCubeFile {
 	private String filePath;
+	private Faces faces;
+	private XMLDocument doc;
 
 	public SVGCubeFile(String filePath) {
 		this.filePath = filePath;
@@ -21,35 +23,50 @@ public class SVGCubeFile {
 		XMLDocument doc = (new XMLDocument()).loadXMLFile(this.filePath);
 		return this.fusion(faces, doc);
 	}
-
+	
+	
 	public String fusion(Faces faces, XMLDocument doc) throws SAXException, IOException, ParserConfigurationException, XPathExpressionException, TransformerException {
-		for(Integer i=1; i <= faces.size(); i++) {
-			Element blocNode =  (Element)doc.nodesFromXPath("//tspan[contains(text(), \"$BLOCK"+i.toString()+"\")]").item(0);
-			blocNode.setTextContent(faces.at(i-1).getTitle());
-		
-			
-			Element templateNode = (Element) doc.nodesFromXPath("//text[contains(text(), \"$text"+i.toString()+"\")]").item(0);
-			Element faceNode = (Element)templateNode.getParentNode();
-			faceNode.removeChild(templateNode);
-			Float y = Float.parseFloat(templateNode.getAttribute("y"));
-			
-			for(Cheat cheat: faces.at(i-1)) {
-				Element cheatNode = (Element)templateNode.cloneNode(false);
-				faceNode.appendChild(cheatNode);
-				cheatNode.setAttribute("y", y.toString());
-				y = y + 10;
-				
-				Element title = doc.createElement("tspan");
-				title.setAttribute("style", "font-weight: bold");
-				cheatNode.appendChild(title);
-			
-				Element content = doc.createElement("tspan");
-				cheatNode.appendChild(content);
-				
-				cheat.renderOnNodes(title, content);
-			}
-		}
+		this.faces = faces;
+		this.doc = doc;
+		faces.acceptVisitor(this);
 		
 		return doc.asXMLString();
+	}
+	
+	public void visitFace(Face face, Integer i) throws XPathExpressionException {
+		Element blocNode = doc
+				.getFirstNodeFromXPath("//tspan[contains(text(), \"$BLOCK"
+						+ i.toString() + "\")]");
+		blocNode.setTextContent(faces.at(i - 1).getTitle());
+
+		Element templateNode = doc
+				.getFirstNodeFromXPath("//text[contains(text(), \"$text"
+						+ i.toString() + "\")]");
+		Element faceNode = (Element) templateNode.getParentNode();
+		faceNode.removeChild(templateNode);
+		Float y = Float.parseFloat(templateNode.getAttribute("y"));
+
+		for(Cheat cheat: face) {
+		  this.visitCheat(cheat, doc, i, templateNode, faceNode, y);
+		  y = y+10;
+		}
+	}
+
+	protected void visitCheat(Cheat cheat, XMLDocument doc, Integer i,
+			Element templateNode, Element faceNode, Float y) {
+
+		Element cheatNode = (Element) templateNode.cloneNode(false);
+		faceNode.appendChild(cheatNode);
+		cheatNode.setAttribute("y", y.toString());
+
+		Element title = doc.createElement("tspan");
+		title.setAttribute("style", "font-weight: bold");
+		cheatNode.appendChild(title);
+
+		Element content = doc.createElement("tspan");
+		cheatNode.appendChild(content);
+
+		cheat.renderOnNodes(title, content);
+
 	}
 }

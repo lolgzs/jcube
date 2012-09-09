@@ -32,9 +32,9 @@ public class Faces {
 		this.last().newCheat(title, content);		
 	}
 
-	public void acceptVisitor(SVGCubeFile svgCubeFile) throws XPathExpressionException {
+	public void acceptVisitor(IFacesVisitor visitor) throws XPathExpressionException {
 		for(Integer i=1; i <= this.size(); i++) {
-			svgCubeFile.visitFace(this.faces.get(i-1), i);
+			visitor.visitFace(this.faces.get(i-1), i);
 		}
 	}
 	

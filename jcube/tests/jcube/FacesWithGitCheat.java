@@ -23,34 +23,46 @@ public class FacesWithGitCheat {
 		assertEquals(5, (int) this.faces.size());
 	}
 
+	
 	@Test
-	public void firstFaceTitleShouldBeCreateAndClone() {
-		assertEquals("Create & clone", this.faces.at(0).getTitle());
+	public void firstFaceShouldEqualsAnotheFaceWithSameCheats() {
+		Face face = new Face("Create & clone")
+			.newCheat("git init", "create new repository")
+			.newCheat("git clone /path/to/repo", "clone local repository")
+			.newCheat("git clone username@host:/path/to/repo", "clone remote repo");
+		
+		assertEquals(face, this.faces.at(0));
 	}
 	
 	@Test
-	public void firstFaceShouldContainsCheatGitInit() {
-		assertTrue(this.faces.at(0).contains(new Cheat("git init", "create new repository")));
-	}
-	
-	@Test
-	public void firstFaceIndexOfCheatGitInitShouldBeZero() {
-		assertEquals(0, this.faces.at(0).indexOf(new Cheat("git init", "create new repository")));
-	}
-	
-	@Test
-	public void firstFaceShouldNotContainsCheatSVNCheckOut() {
-		assertFalse(this.faces.at(0).contains(new Cheat("svn co", "create new repository")));
-	}
+	public void firstFaceShouldNotEqualsAnotheFaceWithOtherTitle() {
+		Face face = new Face("Create")
+			.newCheat("git init", "create new repository")
+			.newCheat("git clone /path/to/repo", "clone local repository")
+			.newCheat("git clone username@host:/path/to/repo", "clone remote repo");
 
+		assertFalse(face.equals(this.faces.at(0)));
+	}
+	
+	@Test
+	public void firstFaceNotShouldEqualsAnotheFaceWithNotSameNumberOfCheats() {
+		Face face = new Face("Create & clone")
+			.newCheat("git init", "create new repository");
+		assertFalse(face.equals(this.faces.at(0)));
+	}
+	
+	@Test
+	public void firstFaceShouldNotEqualsAnotheFaceWithOtherCheatsAndSameSize() {
+		Face face = new Face("Create & clone")
+			.newCheat("git init", "create old repository")
+			.newCheat("git clone /path/to/repo", "clone local repository")
+			.newCheat("git clone username@host:/path/to/repo", "clone remote repo");
+
+		assertFalse(face.equals(this.faces.at(0)));
+	}
+	
 	@Test
 	public void secondFaceTitleShouldBeAddAndRemove() {
 		assertEquals("Add & remove", this.faces.at(1).getTitle());
-	}
-	
-	@Test
-	public void indexOfGitAddStarInSecondFaceShouldBeOne() {
-		assertEquals(1, 
-				     this.faces.at(1).indexOf(new Cheat("git add *", "add all changes to index")));	
-	}
+	}	
 }

@@ -1,11 +1,10 @@
 package jcube;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Face implements Iterable<Cheat> {
 	private String title;
-	private ArrayList<Cheat> cheats = new ArrayList<Cheat>();
+	private Cheats cheats = new Cheats();
 
 	public Face(String title) {
 		this.title = title;
@@ -19,20 +18,15 @@ public class Face implements Iterable<Cheat> {
 		return title; 
 	}
 
-	public void newCheat(String title, String content) {
+	public Face newCheat(String title, String content) {
 		this.cheats.add(new Cheat(title, content));
+		return this;
 	}
 
-	public boolean contains(Cheat cheat) {
-		return this.cheats.contains(cheat);
+	@Override
+	public boolean equals(Object other) {
+		Face otherFace = (Face)other;
+		return this.title.equals(otherFace.title) 
+				&& this.cheats.equals(otherFace.cheats);
 	}
-
-	public int indexOf(Cheat cheat) {
-		return this.cheats.indexOf(cheat);
-	}
-	
-	public int size() {
-		return this.cheats.size();
-	}
-
 }

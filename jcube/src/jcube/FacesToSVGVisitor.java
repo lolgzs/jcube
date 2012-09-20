@@ -28,9 +28,9 @@ public class FacesToSVGVisitor implements IFacesVisitor {
 		Float y = Float.parseFloat(templateNode.getAttribute("y"));
 
 		for(Cheat cheat: face) {
-		  this.visitCheat(cheat, this.doc, faceNumber, templateNode, faceNode, y);
-		  y = y+10;
-		}
+			  this.visitCheat(cheat, this.doc, faceNumber, templateNode, faceNode, y);
+			  y = y+10;
+			}
 	}
 
 	protected void visitCheat(Cheat cheat, XMLDocument doc, Integer i,

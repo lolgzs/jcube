@@ -1,7 +1,5 @@
 package jcube;
 
-import org.w3c.dom.Element;
-
 public class Cheat {
 	private final String title;
 	private final String content;
@@ -10,7 +8,6 @@ public class Cheat {
 		this.title = title;
 		this.content = content;
 	}
-
 	
 	public boolean equals(Object other) {
 		Cheat cheat = (Cheat) other;
@@ -18,9 +15,8 @@ public class Cheat {
 		
 	}
 
-
-	public void renderOnNodes(Element titleNode, Element contentNode) {
-		titleNode.setTextContent(this.title);
-		contentNode.setTextContent(this.content);
+	public void acceptVisitor(ICheatVisitor visitor) {
+		visitor.visitTitle(this.title);
+		visitor.visitContent(this.content);
 	}
 }

@@ -18,29 +18,28 @@ public class FacesToSVGVisitor implements IFacesVisitor {
 		Element blocNode = this.doc
 				.getFirstNodeFromXPath("//tspan[contains(text(), \"$BLOCK"
 						+ faceNumber.toString() + "\")]");
-		blocNode.setTextContent(this.faces.at(faceNumber - 1).getTitle());
 
 		Element templateNode = this.doc
 				.getFirstNodeFromXPath("//text[contains(text(), \"$text"
 						+ faceNumber.toString() + "\")]");
 		Element faceNode = (Element) templateNode.getParentNode();
 		faceNode.removeChild(templateNode);
+		
+
+		blocNode.setTextContent(this.faces.at(faceNumber - 1).getTitle());
 		Float y = Float.parseFloat(templateNode.getAttribute("y"));
 
 		for(Cheat cheat: face) {
-			this.visitCheat(cheat, this.doc, faceNumber, templateNode, faceNode, y);
+			Element cheatNode = (Element) templateNode.cloneNode(false);
+			faceNode.appendChild(cheatNode);
+			cheatNode.setAttribute("y", y.toString());
+			this.visitCheat(cheat, this.doc, cheatNode);
 			y = y+10;
 		}
 	}
 
 	
-	protected void visitCheat(Cheat cheat, XMLDocument doc, Integer i,
-			Element templateNode, Element faceNode, Float y) {
-
-		Element cheatNode = (Element) templateNode.cloneNode(false);
-		faceNode.appendChild(cheatNode);
-		cheatNode.setAttribute("y", y.toString());
-
+	protected void visitCheat(Cheat cheat, XMLDocument doc,	Element cheatNode) {
 		Element title = doc.createElement("tspan");
 		title.setAttribute("style", "font-weight: bold");
 		cheatNode.appendChild(title);

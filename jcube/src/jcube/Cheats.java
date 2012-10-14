@@ -3,9 +3,7 @@ package jcube;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Cheats {
-	
-
+public class Cheats implements Iterable<Cheat> {
 	private ArrayList<Cheat> cheats = new ArrayList<Cheat>();
 
 	public Iterator<Cheat> iterator() {
@@ -28,6 +26,12 @@ public class Cheats {
 		}
 			
 		return true;
+	}
+
+	public void acceptVisitor(IFaceVisitor faceToSVGVisitor) {
+		for(int i=0; i<this.cheats.size(); i++) {
+			faceToSVGVisitor.visitCheat(i, cheats.get(i));
+		}
 	}
 
 }

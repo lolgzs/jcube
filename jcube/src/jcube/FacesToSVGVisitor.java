@@ -23,30 +23,9 @@ public class FacesToSVGVisitor implements IFacesVisitor {
 				.getFirstNodeFromXPath("//text[contains(text(), \"$text"
 						+ faceNumber.toString() + "\")]");
 		Element faceNode = (Element) templateNode.getParentNode();
+		
+		face.acceptVisitor(new FaceToSVGVisitor(doc, blocNode, templateNode));
+
 		faceNode.removeChild(templateNode);
-		
-
-		blocNode.setTextContent(this.faces.at(faceNumber - 1).getTitle());
-		Float y = Float.parseFloat(templateNode.getAttribute("y"));
-
-		for(Cheat cheat: face) {
-			Element cheatNode = (Element) templateNode.cloneNode(false);
-			faceNode.appendChild(cheatNode);
-			cheatNode.setAttribute("y", y.toString());
-			this.visitCheat(cheat, this.doc, cheatNode);
-			y = y+10;
-		}
-	}
-
-	
-	protected void visitCheat(Cheat cheat, XMLDocument doc,	Element cheatNode) {
-		Element title = doc.createElement("tspan");
-		title.setAttribute("style", "font-weight: bold");
-		cheatNode.appendChild(title);
-
-		Element content = doc.createElement("tspan");
-		cheatNode.appendChild(content);
-		
-		cheat.acceptVisitor(new CheatToSVGVistor(title, content));
 	}
 }

@@ -1,8 +1,6 @@
 package jcube;
 
-import java.util.Iterator;
-
-public class Face implements Iterable<Cheat> {
+public class Face {
 	private String title;
 	private Cheats cheats = new Cheats();
 
@@ -10,14 +8,6 @@ public class Face implements Iterable<Cheat> {
 		this.title = title;
 	}
 	
-	public Iterator<Cheat> iterator() {        
-		return cheats.iterator();
-	}
-
-	public String getTitle() {
-		return title; 
-	}
-
 	public Face newCheat(String title, String content) {
 		this.cheats.add(new Cheat(title, content));
 		return this;
@@ -28,5 +18,10 @@ public class Face implements Iterable<Cheat> {
 		Face otherFace = (Face)other;
 		return this.title.equals(otherFace.title) 
 				&& this.cheats.equals(otherFace.cheats);
+	}
+
+	public void acceptVisitor(IFaceVisitor faceToSVGVisitor) {
+		faceToSVGVisitor.visitTitle(this.title);
+		this.cheats.acceptVisitor(faceToSVGVisitor);
 	}
 }

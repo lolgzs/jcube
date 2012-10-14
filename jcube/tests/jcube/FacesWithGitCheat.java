@@ -60,9 +60,4 @@ public class FacesWithGitCheat {
 
 		assertFalse(face.equals(this.faces.at(0)));
 	}
-	
-	@Test
-	public void secondFaceTitleShouldBeAddAndRemove() {
-		assertEquals("Add & remove", this.faces.at(1).getTitle());
-	}	
 }

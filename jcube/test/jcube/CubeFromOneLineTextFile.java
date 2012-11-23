@@ -19,7 +19,7 @@ public class CubeFromOneLineTextFile {
 		this.actualCube = Cube.fromTextFile("templates/one-line-cube.txt");
 	}
 	
-	
+
 	@Test
 	public void cubeShouldBeOneFaceWithCommentSortirDuCoursPlusTot() throws IOException {
 		Cube expectedCube = (new Cube())
